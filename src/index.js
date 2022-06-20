@@ -6,7 +6,7 @@ module.exports = function toReadable (number) {
           case 0: return ``;
           case 1: return `one`;
           case 2: return `two`;
-          case 3: return `tree`;
+          case 3: return `three`;
           case 4: return `four`;
           case 5: return `five`;
           case 6: return `six`;
@@ -39,13 +39,13 @@ module.exports = function toReadable (number) {
           case 9: return `ninety`;
         }
       }
-        let str = num.toString();
+        let str = number.toString();
         
-        if (num === 0) return `zero`;
-        if (num <= 19) return toUnits(num);
-        if (num <= 99) return `${toDozens(+str[0])} ${toUnits(+str[1])}`.trim();
+        if (number === 0) return `zero`;
+        if (number <= 19) return toUnits(number);
+        if (number <= 99) return `${toDozens(+str[0])} ${toUnits(+str[1])}`.trim();
         
-        if (num <= 999) {
+        if (number <= 999) {
           if (+str[1] === 0) return `${toUnits(+str[0])} hundred ${toUnits(+str[2])}`.trim();
           if (+str[1] === 1) return `${toUnits(+str[0])} hundred ${toUnits(+str.slice(1))}`.trim();
           if (+str[1] !== 0 && +str[1] !== 1) return `${toUnits(+str[0])} hundred ${toDozens(+str[1])} ${toUnits(+str[2])}`.trim();
