@@ -38,14 +38,23 @@ module.exports = function toReadable (number) {
         }
       }
         let str = number.toString();
+        let result;
         
-        if (number === 0) return `zero`;
-        if (number <= 19) return toUnits(number);
-        if (number <= 99) return `${toDozens(+str[0])} ${toUnits(+str[1])}`.trim();
-        
-        if (number <= 999) {
-          if (+str[1] === 0) return `${toUnits(+str[0])} hundred ${toUnits(+str[2])}`.trim();
-          if (+str[1] === 1) return `${toUnits(+str[0])} hundred ${toUnits(+str.slice(1))}`.trim();
-          if (+str[1] !== 0 && +str[1] !== 1) return `${toUnits(+str[0])} hundred ${toDozens(+str[1])} ${toUnits(+str[2])}`.trim();
+        if (number === 0) {
+          result = `zero`;
+        } else if (number <= 19) {
+          result = toUnits(number);
+        } else if (number <= 99) {
+          result = `${toDozens(+str[0])} ${toUnits(+str[1])}`.trim();
+        } else if (number <= 999) {
+            if (+str[1] === 0) {
+              result = `${toUnits(+str[0])} hundred ${toUnits(+str[2])}`.trim();
+            } else if (+str[1] === 1) {
+              result = `${toUnits(+str[0])} hundred ${toUnits(+str.slice(1))}`.trim();
+            } else if (+str[1] !== 0 && +str[1] !== 1) {
+              result = `${toUnits(+str[0])} hundred ${toDozens(+str[1])} ${toUnits(+str[2])}`.trim();
+            }
         }
+
+        return result;
 }
