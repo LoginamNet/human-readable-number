@@ -1,7 +1,6 @@
 module.exports = function toReadable (number) {
     
     function toUnits(x) {
-        +x;
         switch (x) {
           case 0: return ``;
           case 1: return `one`;
@@ -27,7 +26,6 @@ module.exports = function toReadable (number) {
       }
       
       function toDozens(x) {
-        +x;
         switch (x) {
           case 2: return `twenty`;
           case 3: return `thirty`;
